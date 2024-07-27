@@ -27,21 +27,29 @@ body {
     line-height: 1.6;
 }
 
-nav {
+.navbar {
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    position: absolute;
+    background-color: black;
+    position: fixed;
     top: 0;
     z-index: 100;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
 }
 
 .nav-flex-row {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding: 10px 0;
     margin: 0;
     list-style: none;
+    padding: 0;
 }
 
 .nav-item {
@@ -61,7 +69,88 @@ nav {
 }
 
 .nav-item a:hover {
-    color: rgb(226, 28, 28);
+    color: rgb(234, 255, 0);
+}
+
+
+/* Media Query for mobile devices */
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .nav-flex-row {
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.9);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        display: none;
+    }
+    .nav-flex-row.show {
+        display: flex;
+    }
+    .nav-item {
+        width: 100%;
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .nav-item:first-child {
+        border-top: none;
+    }
+    .nav-item a {
+        font-size: 1.5em;
+        padding: 10px 20px;
+        display: block;
+        width: 100%;
+    }
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        padding: 10px;
+    }
+    .menu-toggle span {
+        height: 3px;
+        width: 25px;
+        background-color: white;
+        margin: 3px 0;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+    .menu-toggle.active span:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+    }
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-toggle.active span:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+    }
+}
+
+
+/* Media Query for widths between 40% and 100% */
+
+@media (min-width: 40%) and (max-width: 100%) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    .nav-flex-row {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+    .nav-item {
+        margin: 10px 0;
+    }
+    .nav-item a {
+        font-size: 1.7em;
+        padding: 10px 20px;
+    }
 }
 
 
@@ -73,50 +162,36 @@ nav {
 }
 
 #top {
+    width: 100%;
+    min-height: 60vh;
     background-image: url(https://images.unsplash.com/photo-1480241352829-e1573ff2414e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
     background-size: cover;
     background-position: center;
-    width: 100%;
-    min-height: 60vh;
-    margin-top: 60px;
-    /* Ensure it starts below the navbar */
+    margin-top: 63px;
     position: relative;
-    /* Ensure proper layering */
     z-index: 0;
-    /* Make sure it's below the navbar */
-}
-
-#overlay {
-    position: absolute;
-    min-height: inherit;
-    width: 100%;
-    background-color: rgba(73, 72, 72, 0.452);
-    bottom: 200%;
-    padding: 0 10vw;
-}
-
-#text {
-    position: absolute;
-    bottom: 20%;
-    width: 100%;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    padding: 0 10vw;
-    color: aliceblue;
+    text-align: center;
+    color: #fff;
+    padding: 20px;
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.3);
 }
 
-#text h1 {
-    font-size: 4vw;
-    color: aliceblue;
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    width: 40%;
-    font-size: 8vw;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    transition: all 0.5s ease
+#top h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    transition: color 0.3s ease, transform 0.3s ease;
+    /* Add transition for smooth hover */
 }
 
-#text h1:hover {
+
+/* Hover effect for h1 */
+
+#top h1:hover {
     color: #ff4500;
     animation: crazyAnimation 1s infinite;
 }
@@ -131,6 +206,46 @@ nav {
     100% {
         transform: scale(1);
     }
+}
+
+#top p {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    max-width: 800px;
+}
+
+.nature-destinations {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.nature-item {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.nature-item img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.nature-item h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #006400;
+}
+
+.nature-item p {
+    font-size: 1.2rem;
+    color: #333;
 }
 
 
@@ -217,7 +332,7 @@ nav {
 #b2 h3 {
     font-size: 1.8em;
     margin-bottom: 15px;
-    color: black;
+    color: white;
     /* Changed color to black for text */
     font-family: 'Playfair Display', serif;
 }
@@ -227,7 +342,7 @@ nav {
     line-height: 1.6;
     margin-bottom: 20px;
     font-family: 'Lato', sans-serif;
-    color: black;
+    color: yellow;
     /* Changed color to black for text */
 }
 
@@ -266,7 +381,7 @@ nav {
     line-height: 1.6;
     margin-bottom: 20px;
     font-family: 'Lato', sans-serif;
-    color: black;
+    color: red;
     /* Changed color to black for text */
 }
 
@@ -315,80 +430,6 @@ nav {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     opacity: 0.9;
     margin: 10px;
-}
-
-#bottom {
-    display: flex;
-    width: 100%;
-    min-height: 40vh;
-    background-color: rgb(99, 99, 114);
-    position: relative;
-    /* Ensure it's positioned correctly relative to the top section */
-    z-index: 1;
-    /* Ensure it's below the top section */
-}
-
-#b1 {
-    padding: 30px;
-    width: 25%;
-    min-height: inherit;
-    background-color: beige;
-}
-
-#b1 p {
-    font-size: 12px;
-    margin-top: 20px;
-}
-
-#b2 {
-    width: 25%;
-    min-height: inherit;
-    background-image: url(https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1948&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
-    background-size: cover;
-    background-position: center;
-}
-
-#b3 {
-    width: 20%;
-    min-height: inherit;
-    background-color: rgb(184, 224, 23);
-}
-
-#b4 {
-    width: 30%;
-    min-height: inherit;
-    background-color: rgba(108, 111, 110, 0.37);
-    color: white;
-    padding: 30px;
-}
-
-#textright {
-    display: flex;
-    width: 60%;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#textright p {
-    font-size: 12px;
-}
-
-#b2 h3 {
-    color: whitesmoke;
-}
-
-#b2 li,
-#b2 p {
-    color: #f5f5f5
-}
-
-#b2 p,
-#b3 p {
-    color: yellow
-}
-
-#b3 p {
-    color: red
 }
 
 footer {
